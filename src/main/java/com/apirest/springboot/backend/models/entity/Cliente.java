@@ -36,19 +36,19 @@ public class Cliente implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 	
-	private String foto;
+	private String imagen;
 	
 	/*@PrePersist
 	public void prePersist() {
 		createAt = new Date();
 	}*/
 	
-	public String getFoto() {
-		return foto;
+	public String getImagen() {
+		return imagen;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public Long getId() {

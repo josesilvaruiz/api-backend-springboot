@@ -151,7 +151,7 @@ public class ClienteRestController {
 		Map<String, Object> response = new HashMap<>();
 		try {
 			Cliente cliente = clienteService.findById(id);
-			String nombreFotoAnterior = cliente.getFoto();
+			String nombreFotoAnterior = cliente.getImagen();
 			if(nombreFotoAnterior != null && nombreFotoAnterior.length() >0) {
 				Path rutaFotoAnterior = Paths.get("uploads").resolve(nombreFotoAnterior).toAbsolutePath();
 				File archivoFotoAnterior = rutaFotoAnterior.toFile();
@@ -175,7 +175,7 @@ public class ClienteRestController {
 		Cliente cliente = clienteService.findById(id);
 		
 		if(!archivo.isEmpty()) {
-			String nombreArchivo = archivo.getOriginalFilename();
+			String nombreArchivo = archivo.getOriginalFilename().concat(id.toString());
 			Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
 			try {
 				Files.copy(archivo.getInputStream(), rutaArchivo);
@@ -187,7 +187,7 @@ public class ClienteRestController {
 				
 			}
 
-			String nombreFotoAnterior = cliente.getFoto();
+			String nombreFotoAnterior = cliente.getImagen();
 			if(nombreFotoAnterior != null && nombreFotoAnterior.length() >0) {
 				Path rutaFotoAnterior = Paths.get("uploads").resolve(nombreFotoAnterior).toAbsolutePath();
 				File archivoFotoAnterior = rutaFotoAnterior.toFile();
@@ -196,7 +196,7 @@ public class ClienteRestController {
 				}
 			}
 
-			cliente.setFoto(nombreArchivo);
+			cliente.setImagen(nombreArchivo);
 			
 			clienteService.save(cliente);
 			
